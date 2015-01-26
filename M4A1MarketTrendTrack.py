@@ -5,8 +5,8 @@ from time import sleep
 
 url = "http://steamcommunity.com/market/priceoverview/?country=US&currency=1&appid=730&market_hash_name=M4A1-S%20%7C%20Guardian%20%28Minimal%20Wear%29"
 jsonFileName = "data.json"
-lowPrice = 5.03
-highPrice = 5.50
+lowPrice = 4.70
+highPrice = 5.45
 checked = False
 
 while True:
