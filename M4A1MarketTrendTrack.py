@@ -23,8 +23,11 @@ while True:
 		jsonFile.close()
 		
 		# Get lowest price from Steam Market
-		request = urllib.request.urlopen(url)
-		jsonString = request.read().decode("utf-8")
+		try:
+			request = urllib.request.urlopen(url)
+			jsonString = request.read().decode("utf-8")
+		except:
+			print ("Internet connection issue...ignoring")
 		jsonObj = json.loads(jsonString)
 		lowestPrice = float(jsonObj['lowest_price'].replace("&#36;", ""))
 		
