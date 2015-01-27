@@ -9,7 +9,6 @@ csvFileName = "data.csv"
 lastTime = 100
 lowPrice = 4.70
 highPrice = 5.45
-checked = False
 
 while True:
 	# Get current time
