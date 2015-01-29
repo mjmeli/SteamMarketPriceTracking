@@ -29,7 +29,7 @@ while True:
 			lowestPrice = float(jsonObj['lowest_price'].replace("&#36;", ""))
 
 			# Get quantity
-			quantity = float(jsonObj['volume'])
+			quantity = jsonObj['volume']
 
 			# Update minute string
 			minuteString = str(time.minute)
