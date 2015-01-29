@@ -28,6 +28,9 @@ while True:
 			jsonObj = json.loads(jsonString)
 			lowestPrice = float(jsonObj['lowest_price'].replace("&#36;", ""))
 
+			# Get quantity
+			quantity = float(jsonObj['volume'])
+
 			# Update minute string
 			minuteString = str(time.minute)
 			if len(minuteString) == 1:
@@ -46,7 +49,7 @@ while True:
 			# Write data to CSV file
 			with open(csvFileName, "a+") as f:
 				csvFile = csv.writer(f)
-				csvFile.writerow([str(time.hour) + ":" + minuteString, str(lowestPrice)])
+				csvFile.writerow([str(time.hour) + ":" + minuteString, str(lowestPrice), str(quantity)])
 			
 			# Write back JSON and close
 			with open(jsonFileName, "w") as jsonFile:
