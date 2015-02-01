@@ -10,36 +10,28 @@ lowPrice = 4.60
 veryLowPrice = 4.50
 
 while True:
-	# Get current time
-	time = datetime.datetime.now().time()
+	try:
+		# Get lowest price from Steam Market
+		request = urllib.request.urlopen(url)
+		jsonString = request.read().decode("utf-8")
+		jsonObj = json.loads(jsonString)
+		lowestPrice = float(jsonObj['lowest_price'].replace("&#36;", ""))
 
-	# Check every minute
-	if time.minute != lastTime:
-		try:
-			# Get lowest price from Steam Market
-			request = urllib.request.urlopen(url)
-			jsonString = request.read().decode("utf-8")
-			jsonObj = json.loads(jsonString)
-			lowestPrice = float(jsonObj['lowest_price'].replace("&#36;", ""))
+		# Check if lowest price is low and send PushBullet notification if so
+		if lowestPrice <= lowPrice:
+			os.system("./notify.sh " + str(lowestPrice))
+			print ("New low price: $" + str(lowestPrice))
 
-			# Check if lowest price is low and send PushBullet notification if so
-			if lowestPrice <= lowPrice:
-				os.system("./notify.sh " + str(lowestPrice))
-				print ("New low price: $" + str(lowestPrice))
-
-			# If price is very low, aggressively send notifications!
-			if lowestPrice <= veryLowPrice:
-				os.system("./notify.sh " + str(lowestPrice))
-				os.system("./notify.sh " + str(lowestPrice))
-				os.system("./notify.sh " + str(lowestPrice))
-				print ("INSANELY LOW PRICE: $" + str(lowestPrice))
-
-			# Update last checked time
-			lastTime = time.minute
-
-		except Exception as e:
-			print(e)
-			print ("Random issue...no handling built in yet")
+		# If price is very low, aggressively send notifications!
+		if lowestPrice <= veryLowPrice:
+			os.system("./notify.sh " + str(lowestPrice))
+			os.system("./notify.sh " + str(lowestPrice))
+			os.system("./notify.sh " + str(lowestPrice))
+			print ("INSANELY LOW PRICE: $" + str(lowestPrice))
+			
+	except Exception as e:
+		print(e)
+		print ("Random issue...no handling built in yet")
 
 	# Sleep 10 sec
 	sleep(10)
