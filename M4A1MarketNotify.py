@@ -28,10 +28,13 @@ while True:
 			os.system("./notify.sh " + str(lowestPrice))
 			os.system("./notify.sh " + str(lowestPrice))
 			print ("INSANELY LOW PRICE: $" + str(lowestPrice))
-			
-	except Exception as e:
+					
+	except urllib.error.URLError as e:
+		pass
+
+	except Exception as e"
 		print(e)
-		print ("Random issue...no handling built in yet")
+		print("Unknown error...no handling built in")
 
 	# Sleep 10 sec
 	sleep(10)
