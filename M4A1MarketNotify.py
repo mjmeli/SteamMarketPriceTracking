@@ -23,7 +23,7 @@ while True:
 
 			# Check if lowest price is low and send PushBullet notification if so
 			if lowestPrice <= lowPrice:
-				os.system("./notify.sh \"$" + str(lowestPrice) + "\"")
+				os.system("./notify.sh " + str(lowestPrice))
 				print ("New low price: $" + str(lowestPrice))
 
 			# Update last checked time
