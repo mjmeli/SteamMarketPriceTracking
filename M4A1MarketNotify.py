@@ -32,7 +32,7 @@ while True:
 	except urllib.error.URLError as e:
 		pass
 
-	except Exception as e"
+	except Exception as e:
 		print(e)
 		print("Unknown error...no handling built in")
 
