@@ -37,4 +37,4 @@ while True:
 		print("Unknown error...no handling built in")
 
 	# Sleep 10 sec
-	sleep(10)
+	sleep(5)
