@@ -1,3 +1,4 @@
 data.json
+data_*.json
 *.csv
 notify.sh
